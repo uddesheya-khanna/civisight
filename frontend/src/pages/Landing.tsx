@@ -25,7 +25,7 @@ export const Landing: React.FC = () => {
             Civil Infrastructure Vision Prototype
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-            AI-Powered Infrastructure Inspection & Defect Analysis
+            AI-Powered Infrastructure Inspection &amp; Defect Analysis
           </h1>
           <p className="text-lg text-slate-600 leading-relaxed">
             Automated visual defect detection and engineering-grounded condition assessment
@@ -72,7 +72,7 @@ export const Landing: React.FC = () => {
             <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center">
               <FileSpreadsheet className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-slate-900">Auditable & Transparent</h3>
+            <h3 className="text-base font-bold text-slate-900">Auditable &amp; Transparent</h3>
             <p className="text-sm text-slate-600 leading-relaxed">
               PDF inspection reports with visual findings, complete JSON export, full methodology documentation, and transparent model cards.
             </p>
@@ -137,7 +137,7 @@ export const Landing: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 text-center">
             <div className="bg-surface p-4 rounded-xl border border-border space-y-1">
               <span className="text-xs font-mono font-bold text-brand block">01</span>
-              <p className="text-xs font-bold text-slate-800">Upload & EXIF</p>
+              <p className="text-xs font-bold text-slate-800">Upload &amp; EXIF</p>
               <p className="text-[11px] text-slate-500">Magic bytes, validation, re-encode</p>
             </div>
             <div className="bg-surface p-4 rounded-xl border border-border space-y-1">
@@ -157,8 +157,8 @@ export const Landing: React.FC = () => {
             </div>
             <div className="bg-surface p-4 rounded-xl border border-border space-y-1">
               <span className="text-xs font-mono font-bold text-brand block">05</span>
-              <p className="text-xs font-bold text-slate-800">Report & Export</p>
-              <p className="text-[11px] text-slate-500">Auditable PDF & raw JSON</p>
+              <p className="text-xs font-bold text-slate-800">Report &amp; Export</p>
+              <p className="text-[11px] text-slate-500">Auditable PDF &amp; raw JSON</p>
             </div>
           </div>
         </section>

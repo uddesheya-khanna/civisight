@@ -1,0 +1,40 @@
+device: auto            # auto | cpu | cuda:0
+modules:
+  crack_detection:
+    primary:
+      type: yolo
+      weights: models/crack_yolo.pt
+      task: segment          # YOLOv8n-seg fine-tuned on crack-seg dataset (OpenSistemas)
+      imgsz: 640
+      conf: 0.25
+      iou: 0.5
+      class_map: { "0": crack, crack: crack }
+      # Source: OpenSistemas/YOLOv8-crack-seg @ HuggingFace (yolov8n/weights/best.pt)
+      # Dataset: Ultralytics crack-seg (100 epochs), NC=1, class={0: 'crack'}
+    fallback:
+      type: classical_baseline
+  pothole_detection:
+    primary:
+      type: yolo
+      weights: models/pothole_yolo.pt
+      imgsz: 640
+      conf: 0.25
+      iou: 0.5
+      class_map: { "0": pothole, pothole: pothole, D40: pothole }
+    fallback: null
+  safety_detection:
+    person:
+      type: yolo
+      weights: models/yolov8n.pt
+      imgsz: 960
+      conf: 0.35
+      iou: 0.5
+      class_map: { person: person }
+    helmet:
+      type: yolo
+      weights: models/helmet_yolo.pt
+      imgsz: 960
+      conf: 0.30
+      iou: 0.5
+      class_map: { Hardhat: helmet, hardhat: helmet, helmet: helmet, "NO-Hardhat": no_helmet_evidence }
+    fallback: person_only

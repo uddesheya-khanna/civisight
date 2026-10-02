@@ -1,0 +1,103 @@
+# =============================================================================
+# CiviSight AI — .gitignore
+# =============================================================================
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+backend/venv/
+backend/.venv/
+venv/
+.venv/
+env/
+ENV/
+
+# ── Environment / secrets ─────────────────────────────────────────────────────
+# Real .env files are excluded; commit only the .env.example templates
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+*.secret
+
+# ── Model weights (large binary files — download via backend/scripts/) ────────
+# All *.pt files across the entire repo (Ultralytics / YOLO checkpoints)
+*.pt
+*.pth
+*.onnx
+*.torchscript
+
+# HuggingFace download cache inside models/
+backend/models/_hf_cache/
+
+# YOLO training run artifacts
+backend/runs/
+
+# ── Generated analysis storage (per-request images & reports) ─────────────────
+backend/storage/
+
+# ── Test / quality artifacts ──────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.coveragerc
+
+# ── Node / Frontend ───────────────────────────────────────────────────────────
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# npm / yarn debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Vite cache
+frontend/.vite/
+
+# ── Jupyter / IPython ─────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── IDE & editors ─────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+
+# ── OS generated ──────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ── Misc / temp ───────────────────────────────────────────────────────────────
+*.log
+*.tmp
+*.temp
+temp_smoke_test.jpg
+/tmp/
+
+# Ultralytics auto-creates this at repo root when running scripts
+yolov8n.pt

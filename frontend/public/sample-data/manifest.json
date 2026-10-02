@@ -1,0 +1,74 @@
+[
+  {
+    "file": "crack_01.jpg",
+    "module": "crack_detection",
+    "title": "Cracks in concrete slab",
+    "author": "Evelyn Simak",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3ACracks%20in%20concrete%20-%20geograph.org.uk%20-%20706423.jpg"
+  },
+  {
+    "file": "crack_02.jpg",
+    "module": "crack_detection",
+    "title": "Concrete wall surface fracture",
+    "author": "John Harvey",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File%3AConcrete%20cracked.jpg"
+  },
+  {
+    "file": "pothole_01.jpg",
+    "module": "pothole_detection",
+    "title": "Asphalt road pothole distress",
+    "author": "Jakec",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3APothole%20on%20Huntington%20Creek%20Road.JPG"
+  },
+  {
+    "file": "pothole_02.jpg",
+    "module": "pothole_detection",
+    "title": "Urban street surface breakdown",
+    "author": "Miguel Tremblay",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File%3APothole%20in%20Villeray%2C%20Montr%C3%A9al.jpg"
+  },
+  {
+    "file": "pothole_03.jpg",
+    "module": "pothole_detection",
+    "title": "Roadway pothole damage",
+    "author": "Ww doraemon",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3APothole%20in%20Thai.jpg"
+  },
+  {
+    "file": "safety_01.jpg",
+    "module": "safety_detection",
+    "title": "Construction personnel with hard hats",
+    "author": "Tomascastelazo",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AConstruction%20workers%20in%20Mexico.jpg"
+  },
+  {
+    "file": "safety_02.jpg",
+    "module": "safety_detection",
+    "title": "Site team at construction area",
+    "author": "photo taken by flickr Paul Keheler",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AConstruction%20Workers.jpg"
+  },
+  {
+    "file": "safety_03.jpg",
+    "module": "safety_detection",
+    "title": "Workers operating on building structure",
+    "author": "Darshan Simha",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AConstruction%20Workers%20%288583287676%29.jpg"
+  },
+  {
+    "file": "crack_03.jpg",
+    "module": "crack_detection",
+    "title": "Concrete crack measurement specimen",
+    "author": "San Diego Air and Space Museum Archive",
+    "license": "CC0 1.0 Universal Public Domain",
+    "source": "https://commons.wikimedia.org/wiki/File:23_0065602_Convair_Negative_Image_-_Concrete_crack_measurement_(54137555361).jpg"
+  }
+]

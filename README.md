@@ -245,6 +245,91 @@ If you prefer PowerShell:
 
 ---
 
+## Production Deployment — Free Tier ($0 / ₹0)
+
+### Architecture
+
+```
+GitHub
+  ├─→ Vercel Hobby   — React/Vite frontend (static SPA)
+  └─→ Render Free    — FastAPI backend + AI/CV inference
+```
+
+No database. No paid storage. No paid APIs. No GPU required.
+
+### 1. Render — Backend
+
+**Repository:** connect your GitHub repo in the Render dashboard.
+
+| Setting | Value |
+|---|---|
+| Runtime | Python 3.11 |
+| Build command | `pip install -r backend/requirements.txt && python backend/scripts/download_deploy_models.py` |
+| Start command | `python -m uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT --workers 1` |
+| Health check path | `/api/health` |
+| Plan | **Free** |
+
+> The build command downloads all required model weights from public HuggingFace and Ultralytics sources.  
+> It **never** trains a model. It is safe to re-run on every deploy.
+
+**Environment variables — set in Render dashboard:**
+
+| Variable | Value |
+|---|---|
+| `APP_ENV` | `production` |
+| `CORS_ORIGINS` | `http://localhost:5173,https://your-app.vercel.app` |
+| `MAX_CONCURRENT_INFERENCES` | `1` |
+| `OMP_NUM_THREADS` | `1` |
+| `MKL_NUM_THREADS` | `1` |
+| All others | safe defaults from `backend/.env.example` |
+
+> **Cold starts:** Render Free instances sleep after ~15 minutes of inactivity.  
+> The first request after a sleep may take 30–60 seconds while the instance wakes up  
+> and the requested YOLO model loads. Subsequent requests are fast.
+
+> **Ephemeral filesystem:** Uploaded images and reports are stored on the local disk  
+> and are **not persisted** across deploys or instance restarts. This is expected for  
+> an academic free-tier deployment. Do not claim reports are permanently stored.
+
+### 2. Vercel — Frontend
+
+**Root directory:** `frontend`  
+**Framework preset:** Vite  
+**Build command:** `npm run build`  
+**Output directory:** `dist`
+
+React Router SPA routing is handled by `frontend/vercel.json` (already in the repo).
+
+**Environment variable — set in Vercel dashboard:**
+
+| Variable | Value |
+|---|---|
+| `VITE_API_BASE_URL` | `https://your-civisight-api.onrender.com` |
+
+> Set `VITE_API_BASE_URL` under **Project Settings → Environment Variables** in Vercel.  
+> Do not commit the actual Render URL into source code.
+
+### 3. After Deploying
+
+1. Check backend health: `https://your-render-service.onrender.com/api/health`
+2. Open your Vercel URL and verify the landing page loads.
+3. Navigate to `/dashboard`, upload a sample image, and confirm inference completes.
+4. Download a PDF report to confirm report generation works.
+
+### Memory Behaviour (Render Free, 512 MB)
+
+| Phase | RAM usage (approx.) |
+|---|---|
+| Startup | ~60–80 MB (no models loaded) |
+| After first crack inspection | +~100 MB (crack_yolo loaded) |
+| After first pothole inspection | +~50 MB |
+| After first safety inspection | +~120 MB (yolov8n + helmet) |
+
+Models are lazy-loaded on first use and cached for subsequent requests.  
+`MAX_CONCURRENT_INFERENCES=1` prevents two YOLO inferences from overlapping.
+
+---
+
 ## Model Weights
 
 | File | Size | Source | Purpose |

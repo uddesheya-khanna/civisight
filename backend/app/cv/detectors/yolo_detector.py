@@ -100,6 +100,18 @@ class YoloDetector(Detector):
             self._is_loaded = False
             self._classes_valid = False
 
+    def unload(self) -> None:
+        """Free loaded YOLO model object from memory."""
+        if not self._is_loaded and self._model is None:
+            return
+        logger.info(f"Unloading model {self.name} to preserve memory...")
+        self._model = None
+        self._is_loaded = False
+        self._classes_valid = False
+        self._target_class_ids.clear()
+        import gc
+        gc.collect()
+
     def describe(self) -> Dict[str, Any]:
         return {
             "name": self.name,

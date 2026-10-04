@@ -1,0 +1,63 @@
+# CiviSight AI — Render Blueprint
+#
+# Deploys the FastAPI backend on Render Free.
+#
+# IMPORTANT FREE-TIER CONSTRAINTS:
+#   - 512 MB RAM — models are lazy-loaded (not at startup)
+#   - Ephemeral filesystem — uploaded files do not persist across deploys
+#   - Cold starts after 15 min inactivity on free plan
+#   - Single process / single worker to stay within RAM
+#
+# Before deploying, set these environment variables in the Render dashboard:
+#   CORS_ORIGINS          — comma-separated allowed origins including your Vercel URL
+#   (all other settings have safe defaults via backend/.env.example)
+#
+# The build command downloads model weights from public sources.
+# It NEVER trains models.
+
+services:
+  - type: web
+    name: civisight-api
+    runtime: python
+    region: oregon
+    plan: free
+    rootDir: .
+    pythonVersion: "3.11"
+
+    buildCommand: >
+      pip install -r backend/requirements.txt &&
+      python backend/scripts/download_deploy_models.py
+
+    startCommand: >
+      python -m uvicorn backend.app.main:app
+      --host 0.0.0.0
+      --port $PORT
+      --workers 1
+
+    healthCheckPath: /api/health
+
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: LOG_LEVEL
+        value: INFO
+      - key: MAX_UPLOAD_MB
+        value: "10"
+      - key: MAX_IMAGE_DIM
+        value: "1920"
+      - key: RETENTION_HOURS
+        value: "168"
+      - key: MAX_CONCURRENT_INFERENCES
+        value: "1"
+      - key: MODEL_REGISTRY_PATH
+        value: models/registry.yaml
+      - key: STORAGE_DIR
+        value: storage
+      # OMP/MKL thread caps — prevent CPU thread explosion on free instance
+      - key: OMP_NUM_THREADS
+        value: "1"
+      - key: MKL_NUM_THREADS
+        value: "1"
+      # Set CORS_ORIGINS in the Render dashboard — do not commit your Vercel URL
+      - key: CORS_ORIGINS
+        sync: false   # must be set manually in dashboard
